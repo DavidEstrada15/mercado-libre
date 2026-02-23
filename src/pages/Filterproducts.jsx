@@ -27,7 +27,7 @@ function Filterproducts() {
     
     <><Header></Header>
     <h2 className='text-3xl bg-blue-900 p-5 text-center text-white capitalize'>{categoria}</h2>
-    <section className=' grid grid-cols-4 lg:gap-10 gap-5 lg:w-[90%] lg:place-self-center w-screen   lg:px-5 lg:py-10 py-5 bg-white  '>
+    <section className=' grid grid-cols-1 lg:grid-cols-4 lg:gap-10 gap-5 lg:w-[90%] lg:place-self-center w-screen   lg:px-5 lg:py-10 py-5 bg-white  '>
 
    {
    
