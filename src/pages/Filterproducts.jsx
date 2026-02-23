@@ -33,7 +33,7 @@ function Filterproducts() {
    
    productos.map(producto => (<Link key={producto.id} state={{producto}} to="/Productsingle">
       <article  className='  h-full px-10 bg-white  gap-2 py-10 flex flex-col lg:gap-5'>
-         <div className='w-[50vw]  lg:w-[20vw] object-cover h-[30vh] place-items-center ' > 
+         <div className='w-[80vw]  lg:w-[20vw] object-cover h-[30vh] place-items-center  ' > 
           <img className='w-[60%] h-full' src={producto.imagenes} alt={producto.imagenes} /></div>
         <p className='line-clamp-2 text-3xl place-self-start capitalize'>{producto.nombre}</p>
         <p className=' line-through text-gray-500'> {producto.descuento > 0 ? "$" + producto.precio.toLocaleString('es-ES') : ""}</p>

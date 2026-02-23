@@ -16,7 +16,7 @@ function Options() {
 <div className=' lg:bottom-40 lg:left-0 lg:relative   overflow-hidden'>
     <section className='flex overflow-scroll lg:overflow-auto gap-5 max-w-full p-5  lg:place-content-center'>
       
-      <article style={user != null ? {display: "none"}: {display: "flex"}} className='bg-white  lg:max-w-[20vw] h-[45vh] place-self-center   rounded-2xl hidden lg:flex flex-col gap-2 text-center '>
+      <article style={user != null ? {display: "none"}: {display: "flex"}} className='bg-white lg:max-w-[20vw] lg:h-[45vh] px-10 py-1 lg:px-0 lg:py-0 rounded-2xl flex flex-col gap-2 text-center '>
        <h2 className=' hidden lg:flex'>Ingresa a tu cuenta</h2>
        
         <div>

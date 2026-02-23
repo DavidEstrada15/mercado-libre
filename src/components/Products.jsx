@@ -21,7 +21,7 @@ function Products({titulo, categoria, norepetir}) {
      if (norepetir != undefined) { 
       let productosfiltrados= productos.filter(producto => producto.id != norepetir)
        return (
-    <section className=' flex flex-col gap-5 max-w-7xl overflow-x-scroll mx-auto lg:px-0 lg:py-0 px-12 py-20 bg-white w-[90%] '>
+    <section className=' flex flex-col gap-5 max-w-7xl overflow-x-scroll mx-auto lg:px-0 lg:py-0 px-12 py-2 bg-white w-[90%] '>
       <h2 className='text-2xl'>{titulo}</h2><div className='flex flex-col  lg:flex-row lg:gap-10 '>
         
       {
@@ -30,11 +30,11 @@ function Products({titulo, categoria, norepetir}) {
      
     producto.stock > 0 ?
         <Link key={producto.id} state={{producto}} to="/Productsingle">
-      <article key={producto.id} className='  lg:flex px-10 lg:px-0 lg:py-0  py-10 flex flex-col gap-10 place-items-center'>
-        <div className='w-[50vw]  lg:w-[20vw] object-cover lg:h-[30vh] place-items-center ' > 
+      <article key={producto.id} className='  lg:flex px-10 lg:px-0 lg:py-0  py-1 flex flex-col gap-10 place-items-center'>
+        <div className='w-[80vw]  lg:w-[20vw] object-cover h-[30vh] place-items-center ' > 
           <img className='w-[60%] h-full' src={producto.imagenes} alt={producto.imagenes} /></div>
        
-        <div className=' flex flex-col lg:gap-2 gap-5 max-w-48 text-center'>
+        <div className=' flex flex-col lg:gap-2 gap-1 max-w-48 text-center'>
         <p className='line-clamp-2 text-2xl lg:text-3xl place-self-start capitalize'>{producto.nombre}</p>
         <p className=' line-through text-gray-500 '> {producto.descuento > 0 ? "$" + producto.precio.toLocaleString('es-ES') : ""}</p>
         <h4 className=' lg:text-3xl place-self-start'>${producto.descuento > 0 ?  (producto.precio - (producto.descuento * producto.precio / 100)).toLocaleString('es-ES'): producto.precio.toLocaleString('es-ES')}</h4>
@@ -51,12 +51,12 @@ function Products({titulo, categoria, norepetir}) {
   
       
    
-    <section className=' flex flex-col lg:gap-2 gap-5 max-w-7xl overflow-x-scroll mx-auto lg:px-5 lg:py-10 px-12 py-20 bg-white w-[90%] '>
+    <section className=' flex flex-col lg:gap-2 gap-5 max-w-7xl overflow-x-scroll mx-auto lg:px-5 lg:py-10 px-12 py-5 bg-white w-[90%] '>
       <h2 className='text-2xl sticky left-0'>{titulo}</h2><div className='flex flex-col gap-10  lg:flex-row lg:gap-10 w-full text-center '>
         
       {
       productos.map(producto => (producto.stock > 0 ? <Link key={producto.id} state={{producto}} to="/Productsingle">
-      <article key={producto.id} className='  lg:flex lg:px-0 lg:py-0 px-10  py-10 flex flex-col gap-10 place-items-center'>
+      <article key={producto.id} className='  lg:flex lg:px-0 lg:py-0 px-10  py-2 flex flex-col gap-5 place-items-center'>
         <div className='w-[80vw]  lg:w-[20vw] object-cover h-[30vh] place-items-center ' > 
           <img className='w-[60%] h-full' src={producto.imagenes} alt={producto.imagenes} /></div>
        
