@@ -35,7 +35,7 @@ function Home() {
         <Header></Header>
     <Carousel></Carousel>
     <Options ></Options>
-    <div className='flex flex-col gap-5 p-5 '>
+    <div className='flex flex-col gap-5 py-10 '>
 {
   
     categorias.map(categoria => (

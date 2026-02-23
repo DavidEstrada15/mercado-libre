@@ -116,8 +116,8 @@ redireccion()
         ))}
       </select>
        
-      </div> <input className='place-self-center bg-white' accept='image/*'  onChange={e => setFile(e.target.files[0])} type="file" name="imagenes" id="" />
-      <button className='place-self-center bg-white cursor-pointer px-2 py-5 ' type='submit'>Agregar producto</button>
+      </div> <input className='place-self-center border-2 bg-white' accept='image/*'  onChange={e => setFile(e.target.files[0])} type="file" name="imagenes" id="" />
+      <button className='place-self-center border-2 bg-white cursor-pointer px-2 py-5 ' type='submit'>Agregar producto</button>
     </form>
     </>
   )

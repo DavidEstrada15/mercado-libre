@@ -75,7 +75,7 @@ navigate('/Signin', {replace:true})
     <>
     <Header></Header>
     <main >
-      <div className='flex lg:hidden flex-col gap-5 p-5 bg-gray-50'>
+      <div className='flex lg:hidden flex-col gap-5 bg-gray-50'>
         
       <h2 className='text-2xl capitalize'> {producto.nombre}</h2>
       <img src={producto.imagenes} alt="" />
@@ -114,7 +114,8 @@ navigate('/Signin', {replace:true})
         </div>
         
       </div>
-      <Products norepetir={producto.id} titulo='Productos relacionados' categoria={producto.categoria}></Products>
+      <div  className=' '>
+      <Products norepetir={producto.id} titulo='Productos relacionados' categoria={producto.categoria}></Products></div>
       </div>
     </main>
     <Footer></Footer>

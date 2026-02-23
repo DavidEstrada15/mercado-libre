@@ -134,7 +134,7 @@ if (error) {
       
       <article className='flex flex-col text-2xl p-5' key={producto.idcompra}>  <h2 className='text-center text-3xl line-clamp-1 text-black capitalize'>{producto.nombre}</h2>
       <div className='flex flex-col gap-5 p-5'>
-      <div className='w-[80vw]  lg:w-[20vw] object-cover h-[30vh] place-items-center ' > 
+      <div className='w-[80vw]  lg:w-[20vw] object-cover h-[30vh] place-items-center place-self-center ' > 
           <img className='w-[60%] h-full' src={producto.imagenes} alt={producto.imagenes} /></div>
       <button className='bg-red-500 place-self-center py-5 px-10 cursor-pointer' onClick={() => {
         handleErase(producto)
