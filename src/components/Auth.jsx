@@ -1,6 +1,5 @@
 import React from 'react'
 import { supabase } from '../supaBaseclient'
-import { useEffect } from 'react'
 function Auth() {
    const HandleGoogleLogin = async () => {
     await supabase.auth.signInWithOAuth({

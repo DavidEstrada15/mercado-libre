@@ -30,7 +30,7 @@ function Searchpage() {
     <p className='text-2xl hidden lg:block'>{productos.length} resultados</p>
     
     </div>
-    <section className=' flex flex-col lg:gap-10 gap-5 w-screen overflow-x-scroll lg:px-5 lg:py-10 py-5 bg-white  '>
+    <section className=' grid grid-cols-1 lg:grid-cols-4 lg:gap-10 gap-5 w-screen  lg:px-5 lg:py-10 py-5 bg-white  '>
       {
         productos.map(producto => (
         <Link key={producto.id} state={{producto}} to="/Productsingle">

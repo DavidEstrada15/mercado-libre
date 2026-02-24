@@ -22,7 +22,7 @@ function Options() {
         <div>
           <img className='w-20 lg:w-30 lg:h-30 place-self-center' src={registration} alt="Ingresa a tu cuenta" />
           <h2 className='lg:hidden text-blue-600 text-center'>INICIA A COMPRAR</h2>
-          <h2 className='text-[0.8rem]'>Disfruta de ofertas <br /> y compras sin limites</h2>
+          <h2 className='text-[0.8rem] lg:text-2xl'>Disfruta de ofertas <br /> y compras sin limites</h2>
         </div>
         
        <Link to={"/SignIn"}> <button className='bg-blue-200 text-blue-600 place-self-center cursor-pointer text-[0.9rem] px-2 rounded-[10%] py-2 '>Ingresa  a tu cuenta</button></Link> 
@@ -40,10 +40,10 @@ function Options() {
         <div>
           <img className='w-20 place-self-center lg:w-30 lg:h-30 ' src={lowprice} alt="Precios bajos" />
           <h2 className='text-blue-600 lg:hidden'>PRECIOS ACCESIBLES</h2>
-          <h2 className='text-[0.8rem]'>Descubre productos <br /> con precios bajos</h2>
+          <h2 className='text-[0.8rem lg:text-[1rem]'>Descubre productos <br /> con precios bajos</h2>
         </div>
         <Link className='' to={"/Offerts"}>
-        <button className='bg-blue-200 text-blue-600 place-self-center text-[0.9rem] px-2 rounded-[10%] py-2 cursor-pointer'>Mostrar productos</button>
+        <button className='bg-blue-200 text-blue-600 place-self-center text-[0.9rem] lg:text-[1rem] px-2 rounded-[10%] py-2 cursor-pointer'>Mostrar productos</button>
       </Link></article>
         
       <article className='bg-white lg:max-w-[20vw] h-70 lg:h-[45vh] px-10 py-1 lg:px-0 lg:py-0 rounded-2xl flex flex-col gap-2 text-center '>
@@ -51,10 +51,10 @@ function Options() {
         <div>
           <img className='w-20  lg:w-30 place-self-center lg:h-30 ' src={protectedbuy} alt="Compra protegida" />
           <h2 className='lg:hidden text-blue-600 text-center'>COMPRA PROTEGIDA</h2>
-          <h2 className='text-[0.8rem]'>Realiza tu compra gratis <br /> de forma totalmente segura</h2>
+          <h2 className='text-[0.8rem] lg:text-[0.9rem]'>Realiza tu compra gratis <br /> de forma totalmente segura</h2>
         </div>
         <Link to={"/PQRpage"} state={"Compras"}>
-        <button className='bg-blue-200 cursor-pointer text-blue-600 place-self-center text-[0.7rem] px-2 rounded-[10%] py-2 '>Como funciona</button></Link>
+        <button className='bg-blue-200 cursor-pointer text-blue-600 place-self-center text-[0.7rem] lg:text-[1rem] px-2 rounded-[10%] py-2 '>Como funciona</button></Link>
       </article>
      
      

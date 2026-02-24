@@ -44,7 +44,6 @@ if (user != null) {
 if (data.categoriasfavoritas.includes(producto.categoria) != true) {
   if (JSON.parse(data.categoriasfavoritas).length < 4) {
     let categorianueva= [...JSON.parse(data.categoriasfavoritas),producto.categoria]
-   console.log(categorianueva)
     await supabase.from("usuarios").update({
         categoriasfavoritas: JSON.stringify(categorianueva)
       }).eq("id_usuario", user.id)
@@ -92,8 +91,8 @@ navigate('/Signin', {replace:true})
     
       <Products norepetir={producto.id} titulo='Productos relacionados' categoria={producto.categoria}></Products></div> 
       <div className='hidden lg:flex flex-col gap-5 p-5 bg-gray-50 place-items-center '>
-        <Link state={producto.categoria} to="/Filterproducts"><h2 className='text-2xl text-start text-blue-600'>{producto.categoria}</h2></Link> 
-        <div className='flex gap-5 p-20'>  
+   <div className='flex gap-5'><Link to={"/"}><h2 className='text-2xl text-start text-blue-600'>Inicio</h2></Link> <h2 className='text-2xl text-start text-blue-600'>|</h2><Link state={producto.categoria} to="/Filterproducts"><h2 className='text-2xl text-start text-blue-600'>{producto.categoria}</h2></Link>  
+     </div>    <div className='flex gap-5 p-20'>  
          
           <img className='w-[50%]' src={producto.imagenes} alt="" />
         <div className='flex flex-col gap-5 p-20'>

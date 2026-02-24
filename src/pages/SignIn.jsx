@@ -3,6 +3,7 @@ import Auth from '../components/Auth.jsx'
 import { Link } from 'react-router-dom'
 import mercadolibre from "../assets/mercado-libre-logo-fondo.jpg"
 function SignIn() {
+  
   return (
     <>
     <main className='h-screen flex flex-col place-content-center'>
