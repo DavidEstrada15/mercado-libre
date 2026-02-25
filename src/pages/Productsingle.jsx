@@ -25,6 +25,7 @@ let {user, loading}= useLoginCheck()
       await supabase.from("usuarios").update({
         Cartshopping: JSON.stringify(productos)
       }).eq("id_usuario", user.id)
+      
       redireccion()
     }
   

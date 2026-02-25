@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Header from '../components/Header'
 import { supabase } from '../supaBaseclient'
-import { Link } from 'react-router-dom'
 import useLoginCheck from '../components/Logincheck'
 function CartShopping() {
 const [productos, setProductos] = useState([])
-const [iterable, setIterable] = useState(0)
+const alertshown= useRef(false)
 const [productosactualizados, setProductosactualizados] = useState([])
+const [noactualizar, setNoactualizar]= useState(true)
 const {user,loading}= useLoginCheck()
 const handleErase= async (e) => {
   let productosfiltrados= productos.filter(productolocal => productolocal.idcompra != e.idcompra)
@@ -23,12 +23,15 @@ useEffect(() => {
 }, [loading])
 
 useEffect(() => {
-  handleProducts()
+  if (noactualizar == true) {
+    handleProducts()
+  }
+  
 }, [productosactualizados])
 
 const handleAlert = () => {
-  if (iterable < 1) {
-     setIterable(1)
+  if (!alertshown.current) {
+    alertshown.current= true
         alert("Uno de tus productos ha sido actualizado")
   }
   
@@ -45,22 +48,32 @@ if (error){
  productos.forEach(producto =>{
   productosactualizados.forEach((productoactu) =>{
     if (producto.precio != productoactu.precio && producto.id == productoactu.id) {
-      handleAlert()
+    
+        handleAlert()
+
+      
    let productoscorregidos = productos.filter(producto => producto.id != productoactu.id)
+   setProductos(productoscorregidos)
    handleUpdateProducts(productoscorregidos)
    
     
     }
 
     if ( producto.stock != productoactu.stock && producto.id == productoactu.id){
-       handleAlert()
+
+        handleAlert()
+      
+       
       let productoscorregidos = productos.filter(producto => producto.id != productoactu.id)
+      setProductos(productoscorregidos)
       handleUpdateProducts(productoscorregidos)
   
     }
 
     if (producto.descuento != productoactu.descuento && producto.id == productoactu.id) {
+  
         handleAlert()
+      
        let productoscorregidos = productos.filter(producto => producto.id != productoactu.id)
        setProductos(productoscorregidos)
       handleUpdateProducts(productoscorregidos)
@@ -75,6 +88,7 @@ const handleUpdateProducts = async (p) =>{
 }
 
 const handleUpdate = async () => {
+  setNoactualizar(false)
   const conteo= {}
    productos.forEach(producto => {
     conteo[producto.id] = (conteo[producto.id] || 0) + 1
@@ -92,8 +106,9 @@ const handleUpdate = async () => {
       .eq("id", id)
   }
 alert("Compra realizada correctamente!")
+setProductos([])
 await supabase.from("usuarios").update({Cartshopping: JSON.stringify([])}).eq("id_usuario", user.id)
-  setProductos([])
+  
   
 }
  
