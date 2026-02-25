@@ -17,9 +17,10 @@ function Updateproduct() {
         
     })
     }
+    const navigate= useNavigate()
     const redireccion= () => {
     
-    navigate('/CartShopping', {replace:true})
+    navigate('/', {replace:true})
    }
 
     const location= useLocation()
@@ -64,7 +65,7 @@ function Updateproduct() {
       
        
       </div> 
-      <button className='place-self-center bg-white cursor-pointer px-2 py-5 ' type='submit'>Actualizar producto</button>
+      <button className='place-self-center border-2 bg-white cursor-pointer px-2 py-5 ' type='submit'>Actualizar producto</button>
     </form>
     </>
   )

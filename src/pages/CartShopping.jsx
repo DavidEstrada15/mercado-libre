@@ -76,8 +76,8 @@ const handleUpdateProducts = async (p) =>{
 
 const handleUpdate = async () => {
   const conteo= {}
-   productos.forEach(p => {
-    conteo[p.id] = (conteo[p.id] || 0) + 1
+   productos.forEach(producto => {
+    conteo[producto.id] = (conteo[producto.id] || 0) + 1
   })
   for (const id in conteo) {
     const cantidad = conteo[id]

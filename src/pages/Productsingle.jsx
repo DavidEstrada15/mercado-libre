@@ -70,10 +70,10 @@ navigate('/Signin', {replace:true})
     <>
     <Header></Header>
     <main >
-      <div className='flex lg:hidden flex-col gap-5 py-5 bg-gray-50'>
+      <div className='flex lg:hidden flex-col gap-5 py-5 bg-white '>
         
       <h2 className='text-2xl capitalize'> {producto.nombre}</h2>
-      <img src={producto.imagenes} alt="" />
+      <img className='w-full sm:w-[50vw] sm:place-self-center h-[50vh]' src={producto.imagenes} alt="" />
       <p className=' line-through text-gray-500 text-2xl'> {producto.descuento > 0 ? "$" + producto.precio.toLocaleString('es-ES') : ""}</p>
         <h4 className=' lg:text-3xl place-self-start text-3xl'>${producto.descuento > 0 ?  (producto.precio - (producto.descuento * producto.precio / 100)).toLocaleString('es-ES'): producto.precio.toLocaleString('es-ES')}</h4>
        
@@ -86,11 +86,11 @@ navigate('/Signin', {replace:true})
       </div>
     
       <Products norepetir={producto.id} titulo='Productos relacionados' categoria={producto.categoria}></Products></div> 
-      <div className='hidden lg:flex flex-col gap-5 p-5 bg-gray-50 place-items-center '>
-   <div className='flex gap-5'><Link to={"/"}><h2 className='text-2xl text-start text-blue-600'>Inicio</h2></Link> <h2 className='text-2xl text-start text-blue-600'>|</h2><Link state={producto.categoria} to="/Filterproducts"><h2 className='text-2xl text-start text-blue-600'>{producto.categoria}</h2></Link>  
-     </div>    <div className='flex gap-5 p-20'>  
+      <div className='hidden lg:flex flex-col gap-5 p-5 bg-gray-100 place-items-center '>
+   <div className='flex gap-5 '><Link to={"/"}><h2 className='text-2xl text-start text-blue-600'>Inicio</h2></Link> <h2 className='text-2xl text-start text-blue-600'>|</h2><Link state={producto.categoria} to="/Filterproducts"><h2 className='text-2xl text-start text-blue-600'>{producto.categoria}</h2></Link>  
+     </div>    <div className='flex gap-5 p-20 bg-white'>  
          
-          <img className='w-[50%]' src={producto.imagenes} alt="" />
+          <img className='w-[30vw] h-[70vh]' src={producto.imagenes} alt="" />
         <div className='flex flex-col gap-5 p-20'>
           <h2 className='text-2xl capitalize'> {producto.nombre}</h2>
        <p className=' line-through text-gray-500'> {producto.descuento > 0 ? "$" + producto.precio.toLocaleString('es-ES') : ""}</p>
