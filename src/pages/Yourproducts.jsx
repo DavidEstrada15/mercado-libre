@@ -6,14 +6,10 @@ import { Link } from 'react-router-dom'
 function Yourproducts() {
 
   useEffect(() =>{
-handleproducts()
-  })
-
-  useEffect(() =>{
-    if (loading != true){
-     user 
+    if (loading != true) {
+      handleproducts()
     }
-    
+
   })
 
   let {user, loading}= useLoginCheck()
@@ -34,7 +30,7 @@ if (error) {
 let respuesta = confirm("Deseas eliminar " + e.nombre + "?")
 if (respuesta) {
   const {data,error} = await supabase.from("productos").delete().eq("id", e.id)
-  setProductos(data)
+  handleproducts()
 }
   
 }
@@ -45,7 +41,7 @@ if (respuesta) {
     <section className='grid lg:grid-cols-2 gap-5'>
     {
       productos.map(producto =>(
-        <article className='place-items-center max-w-[50vw] flex flex-col gap-5 p-5 bg-white place-self-center'>  <div className='w-[50vw]  lg:w-[20vw] object-cover h-[20vh] lg:h-[30vh] place-items-center ' > 
+        <article key={producto.id} className='place-items-center max-w-[50vw] flex flex-col gap-5 p-5 bg-white place-self-center'>  <div className='w-[50vw]  lg:w-[20vw] object-cover h-[20vh] lg:h-[30vh] place-items-center ' > 
           <img className='w-[60%] h-full' src={producto.imagenes} alt={producto.imagenes} /></div>
         <h2 className='max-w-50 capitalize line-clamp-1'>{producto.nombre}</h2>
         <div className='flex gap-20 place-items-center'><Link to={'/Updateproduct'} state={producto}><button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="scale-200 cursor-pointer" viewBox="0 0 16 16">

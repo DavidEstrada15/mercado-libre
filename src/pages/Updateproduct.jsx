@@ -37,7 +37,7 @@ function Updateproduct() {
                 }).eq("id", producto.id)
 
 
-                redireccion
+                redireccion()
         if (error) {
           console.log(error)
         }
@@ -51,6 +51,10 @@ function Updateproduct() {
       </div></Link>
     <form onSubmit={handleSubmit} className='  gap-5 py-5 h-screen flex flex-col text-center bg-white place-self-center'>
       <h2>Actualizar {producto.nombre}</h2>
+      <p>Precio original:{producto.precio}</p>
+      <p>Stock del producto: {producto.stock}</p>
+      <p>Descuento del producto: {producto.descuento}</p>
+      <p>Si mantienes los datos originales, ponlos en su respectivo campo</p>
       <div className=' grid-cols-1 lg:grid-cols-3 p-5 grid h-screen gap-5'>
       <input min={1} onChange={handleChange}  placeholder='precio' className='p-2 bg-white place-self-center border-b-2' type="number" name='precio' />
 

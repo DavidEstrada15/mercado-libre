@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import useLoginCheck from '../components/Logincheck'
 function CartShopping() {
 const [productos, setProductos] = useState([])
+const [iterable, setIterable] = useState(0)
 const [productosactualizados, setProductosactualizados] = useState([])
 const {user,loading}= useLoginCheck()
 const handleErase= async (e) => {
@@ -13,7 +14,6 @@ setProductos(productos.filter(productolocal => productolocal.idcompra != e.idcom
  await supabase.from("usuarios").update({Cartshopping: JSON.stringify(productosfiltrados)}).eq("id_usuario", user.id)
  handleCart
 }
-
 
 useEffect(() => {
   if (loading != true) {
@@ -27,11 +27,9 @@ useEffect(() => {
 }, [productosactualizados])
 
 const handleAlert = () => {
-  let i=0 
-
-  if (i> 0) {
-    alert("Uno de tus productos ha sido actualizado")
-    i++
+  if (iterable < 1) {
+     setIterable(1)
+        alert("Uno de tus productos ha sido actualizado")
   }
   
 }
@@ -47,29 +45,26 @@ if (error){
  productos.forEach(producto =>{
   productosactualizados.forEach((productoactu) =>{
     if (producto.precio != productoactu.precio && producto.id == productoactu.id) {
-   let productoscorregidos=  productos.map(productoactual => productoactual.precio != producto.precio) 
+      handleAlert()
+   let productoscorregidos = productos.filter(producto => producto.id != productoactu.id)
+   handleUpdateProducts(productoscorregidos)
    
-   setProductos(productoscorregidos)
-    handleUpdateProducts(productoscorregidos)
-    handleAlert
+    
     }
 
     if ( producto.stock != productoactu.stock && producto.id == productoactu.id){
- let productoscorregidos=  productos.filter(productoactual => productoactual.stock == productoactu.stock)
-
- setProductos(productoscorregidos)
-  handleUpdateProducts(productoscorregidos)
-   handleAlert
+       handleAlert()
+      let productoscorregidos = productos.filter(producto => producto.id != productoactu.id)
+      handleUpdateProducts(productoscorregidos)
+  
     }
 
     if (producto.descuento != productoactu.descuento && producto.id == productoactu.id) {
-      console.log(producto.descuento)
-      console.log(productoactu.descuento)
-       let productoscorregidos=  productos.filter(productoactual => productoactual.descuento != producto.descuento)
-      
-   setProductos(productoscorregidos)
-   handleUpdateProducts(productoscorregidos)
-    handleAlert
+        handleAlert()
+       let productoscorregidos = productos.filter(producto => producto.id != productoactu.id)
+       setProductos(productoscorregidos)
+      handleUpdateProducts(productoscorregidos)
+  
     }
   })
  })
@@ -143,7 +138,7 @@ if (error) {
      ))
       : "No tienes productos en el carrito" 
       }</div>
-      <h2 className='text-3xl place-self-center'>Tu gasto es {calcularprecio.toLocaleString('es-ES')}
+      <h2 className='text-3xl   text-center'>Tu gasto es {calcularprecio.toLocaleString('es-ES')}
       </h2>
       <button style={productos.length > 0 ? {display: "block"}: {display:"none"}} onClick={handleUpdate} className='place-self-center px-20 bg-blue-700 cursor-pointer text-white py-5'>Comprar</button>
       </section>

@@ -3,9 +3,10 @@ import Header from '../components/Header'
 import { useLocation, Link } from 'react-router-dom'
 import { supabase } from '../supaBaseclient'
 import { useState, useEffect } from 'react'
+import Footer from '../components/Footer'
 function Filterproducts() {
-    const location= useLocation()
- const categoria= location.state
+    const locacion= useLocation().state
+ const categoria= locacion
  let [productos, setProductos] = useState([])
      useEffect(() =>{
       setProductos([])
@@ -23,9 +24,10 @@ function Filterproducts() {
              }
            
      }
+     
   return (
     
-    <><Header></Header>
+    <><Header cambia= {categoria}></Header>
     <h2 className='text-3xl bg-blue-900 p-5 text-center text-white capitalize'>{categoria}</h2>
     <section className=' grid grid-cols-1 lg:grid-cols-4 lg:gap-20 gap-5 lg:w-full lg:place-self-center w-screen   lg:px-5 lg:py-10 py-5 bg-white  '>
 
@@ -45,6 +47,7 @@ function Filterproducts() {
    </svg>internacional</span> : "Envio Gratis"}</h2></div>
          </article></Link>
     ))}</section>
+    <Footer></Footer>
     </>
   )
 }

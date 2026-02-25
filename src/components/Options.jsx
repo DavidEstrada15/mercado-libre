@@ -16,7 +16,7 @@ function Options() {
 <div className=' lg:bottom-40 lg:left-0 lg:relative   overflow-hidden'>
     <section className='flex overflow-scroll lg:overflow-auto gap-5 max-w-full p-5  lg:place-content-center'>
       
-      <article style={user != null ? {display: "none"}: {display: "flex"}} className='bg-white lg:max-w-[20vw] lg:h-[45vh] px-10 py-1 lg:px-0 lg:py-0 rounded-2xl flex flex-col gap-2 text-center '>
+      <article style={user != null && loading != true ? {display: "none"}: {display: "flex"}} className='bg-white lg:max-w-[20vw] lg:h-[45vh] px-10 py-1 lg:px-0 lg:py-0 rounded-2xl flex flex-col gap-2 text-center '>
        <h2 className=' hidden lg:flex'>Ingresa a tu cuenta</h2>
        
         <div>
@@ -40,10 +40,10 @@ function Options() {
         <div>
           <img className='w-20 place-self-center lg:w-30 lg:h-30 ' src={lowprice} alt="Precios bajos" />
           <h2 className='text-blue-600 lg:hidden'>PRECIOS ACCESIBLES</h2>
-          <h2 className='text-[0.8rem lg:text-[1rem]'>Descubre productos <br /> con precios bajos</h2>
+          <h2 className='text-[0.8rem] lg:text-[1rem]'>Descubre productos <br /> con precios bajos</h2>
         </div>
-        <Link className='' to={"/Offerts"}>
-        <button className='bg-blue-200 text-blue-600 place-self-center text-[0.9rem] lg:text-[1rem] px-2 rounded-[10%] py-2 cursor-pointer'>Mostrar productos</button>
+        <Link to={"/Offerts"}>
+        <button className='bg-blue-200 text-blue-600 place-self-center text-[0.8rem] lg:text-[1rem] px-2 rounded-[10%] py-2 cursor-pointer'>Mostrar productos</button>
       </Link></article>
         
       <article className='bg-white lg:max-w-[20vw] h-70 lg:h-[45vh] px-10 py-1 lg:px-0 lg:py-0 rounded-2xl flex flex-col gap-2 text-center '>

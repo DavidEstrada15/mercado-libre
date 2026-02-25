@@ -19,7 +19,7 @@ function Appandroid() {
         +17 M opiniones</div></div>
     </div>
 
-    <button className='bg-blue-600 place-self-center py-2 px-[2.2%] mr-5 rounded-2xl'>Abrir</button>
+    <button className='bg-blue-600 place-self-center py-2 px-[2.2%] mr-5 rounded-2xl'><a href="https://play.google.com/store/apps/details?id=com.mercadolibre&hl=es_CO">Abrir</a></button>
     </section>
   )
 }

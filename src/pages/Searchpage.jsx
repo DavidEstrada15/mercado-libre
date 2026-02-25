@@ -3,7 +3,9 @@ import { useState, useEffect } from 'react'
 import { supabase } from '../supaBaseclient'
 import { Link, useLocation } from 'react-router-dom'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 function Searchpage() {
+  
   const location= useLocation()
  const searchvalue= location.state
  let [productos, setProductos] = useState([])
@@ -14,7 +16,7 @@ function Searchpage() {
      const handleProducts =  async () => {
        const {data, error} = await supabase
              .from("productos")
-             .select("*").like('nombre',`${searchvalue}%`)
+             .select("*").like('nombre',`%${searchvalue}%`)
              if (error) {
                console.log(error)
              }else{
@@ -22,6 +24,7 @@ function Searchpage() {
              }
            
      }
+
   return (<>
     <Header></Header>
     <div className='lg:flex'>
@@ -30,8 +33,9 @@ function Searchpage() {
     <p className='text-2xl hidden lg:block'>{productos.length} resultados</p>
     
     </div>
-    <section className=' grid grid-cols-1 lg:grid-cols-4 lg:gap-10 gap-5 w-screen  lg:px-5 lg:py-10 py-5 bg-white  '>
+    <section className={` ${productos.length > 0  ? 'grid-cols-1 lg:grid-cols-4 grid' : 'place-content-center'} lg:gap-10 gap-5 w-screen  lg:px-5 lg:py-10 py-5 bg-white  `}>
       {
+        productos.length > 0 ?
         productos.map(producto => (
         <Link key={producto.id} state={{producto}} to="/Productsingle">
               <article key={producto.id} className='  lg:flex lg:flex-col sm:gap-20 lg:gap-5 lg:px-0 lg:py-0   py-2 flex gap-2'>
@@ -46,9 +50,11 @@ function Searchpage() {
           <path d="M8 0c-.787 0-1.292.592-1.572 1.151A4.35 4.35 0 0 0 6 3v3.691l-2 1V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.191l-1.17.585A1.5 1.5 0 0 0 0 10.618V12a.5.5 0 0 0 .582.493l1.631-.272.313.937a.5.5 0 0 0 .948 0l.405-1.214 2.21-.369.375 2.253-1.318 1.318A.5.5 0 0 0 5.5 16h5a.5.5 0 0 0 .354-.854l-1.318-1.318.375-2.253 2.21.369.405 1.214a.5.5 0 0 0 .948 0l.313-.937 1.63.272A.5.5 0 0 0 16 12v-1.382a1.5 1.5 0 0 0-.83-1.342L14 8.691V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v.191l-2-1V3c0-.568-.14-1.271-.428-1.849C9.292.591 8.787 0 8 0"/>
         </svg>internacional</span> : "Envio Gratis"}</h2></div>
               </article></Link>
-        ))
+        )): <div className='flex flex-col gap-5 text-center w-full'><h2 className='text-4xl w-full'>no se encontro el producto '{searchvalue}'</h2>
+        <p>Revisa la ortografia de tu producto</p>
+        </div> 
       }
-    </section></div>
+    </section></div><Footer></Footer>
     </>
   )
 }

@@ -20,16 +20,12 @@ let {user, loading}= useLoginCheck()
     navigate('/CartShopping', {replace:true})
    }
   const handleSubmitproduct=  async () =>{
-if (user != null) {
+
   let productos= [...productoscart, producto]
       await supabase.from("usuarios").update({
         Cartshopping: JSON.stringify(productos)
       }).eq("id_usuario", user.id)
       redireccion()
-}
-      
-
-
     }
   
   
@@ -74,7 +70,7 @@ navigate('/Signin', {replace:true})
     <>
     <Header></Header>
     <main >
-      <div className='flex lg:hidden flex-col gap-5 bg-gray-50'>
+      <div className='flex lg:hidden flex-col gap-5 py-5 bg-gray-50'>
         
       <h2 className='text-2xl capitalize'> {producto.nombre}</h2>
       <img src={producto.imagenes} alt="" />

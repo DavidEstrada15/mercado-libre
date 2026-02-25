@@ -5,16 +5,21 @@ import userplaceholder from "../assets/user-placeholder.png"
 import useLoginCheck from './Logincheck.jsx'
 import { supabase } from '../supaBaseclient.js'
 import Logout from './Logout.jsx'
-function Header() {
-
-
+function Header({cambia}) {
+  let [variablecambia, setVariablecambia]= useState(cambia)
+  let [openuser, setOpenuser] = useState(true)
   let [open, setOpen] = useState(false)
   const handleChange = () => {
      open == true ? setOpen(false) : setOpen(true)
 
   }
-
-  let [openuser, setOpenuser] = useState(true)
+useEffect(()=>{
+  if (cambia != variablecambia) {
+  setVariablecambia(cambia)
+  handleChange()
+ }
+})
+ 
 
   let handleChangeuser = () => {
     openuser == true ? setOpenuser(false) : setOpenuser(true)

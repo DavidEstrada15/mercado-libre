@@ -50,7 +50,6 @@ const {user, loading}= useLoginCheck()
     const handleSubmit=  async (e) =>{
       e.preventDefault()
       if (!file) return;
-console.log(file)
     const fileExt = file.name.split('.').pop();
     const fileName = `${Math.random()}.${fileExt}`;
     const filePath = `${fileName}`;
@@ -98,6 +97,12 @@ redireccion()
       </div></Link>
     <form onSubmit={handleSubmit} className='  gap-5 py-5 h-screen flex flex-col text-center bg-white place-self-center'>
       <div className=' grid-cols-1 lg:grid-cols-3 p-5 grid h-screen gap-5'>
+        <select className='bg-white place-self-center border-b-2 py-2' onChange={handleChange} value={producto.categoria} name="categoria" id="">
+        <option value="" selected disabled>Ponga la categoria del producto</option>
+        {categoria.map((categoriasola) => (
+          <option key={categoriasola.id} value={categoriasola.nombre}>{categoriasola.nombre}</option>
+        ))}
+      </select>
       <input onChange={handleChange} placeholder='nombre' className='p-2 bg-white place-self-center border-b-2' type="text" name='nombre' />
       <input min={1} onChange={handleChange}  placeholder='precio' className='p-2 bg-white place-self-center border-b-2' type="number" name='precio' />
 
@@ -109,12 +114,7 @@ redireccion()
       </select>
       
       <input min={0} placeholder='descuento:' onChange={handleChange} className='p-2 bg-white place-self-center border-b-2' type="number" name='descuento' />
-      <select className='bg-white place-self-center border-b-2 py-2' onChange={handleChange} value={producto.categoria} name="categoria" id="">
-        <option value="" selected disabled>Ponga la categoria del producto</option>
-        {categoria.map((categoriasola) => (
-          <option key={categoriasola.id} value={categoriasola.nombre}>{categoriasola.nombre}</option>
-        ))}
-      </select>
+      
        
       </div> <input className='place-self-center border-2 bg-white' accept='image/*'  onChange={e => setFile(e.target.files[0])} type="file" name="imagenes" id="" />
       <button className='place-self-center border-2 bg-white cursor-pointer px-2 py-5 ' type='submit'>Agregar producto</button>

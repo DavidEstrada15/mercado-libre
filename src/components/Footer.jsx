@@ -9,8 +9,8 @@ function Footer() {
   let [imagenactual, setImagenactual] = useState(0)
     let [startx, setStartx] = useState(0)
     let [hover, setHover] = useState(false)
-
   let [productos, setProductos] = useState([])
+  let letras= []
 
   let handleProducts = async () =>{
 let {data,error} = await supabase.from("productos").select("*").order('nombre', {ascending: true})
@@ -81,7 +81,6 @@ titulo: "Seguridad, de principio a fin",
       setImagenactual(articulos.length -1)
     }
   }
-let letras= []
   const handleAlphabet = () =>{
 for (let i = 97; i <= 122; i++) {
  letras.push(String.fromCharCode(i))

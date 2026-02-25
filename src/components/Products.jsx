@@ -57,11 +57,11 @@ function Products({titulo, categoria, norepetir}) {
       {
       productos.map(producto => (producto.stock > 0 ? <Link key={producto.id} state={{producto}} to="/Productsingle">
       <article key={producto.id} className='  lg:flex lg:flex-col sm:gap-20 lg:gap-5 lg:px-0 lg:py-0   py-2 flex gap-2'>
-        <div className='w-52 shrink-0  lg:w-[20vw] object-cover h-50 place-items-center ' > 
+        <div className='w-52 shrink-0  lg:w-[15vw] object-cover h-50 place-items-center ' > 
           <img className='w-full h-full ' src={producto.imagenes} alt={producto.imagenes} /></div>
        
         <div className=' flex flex-col gap-5 max-w-48 text-center'>
-        <p className='line-clamp-2 sm:text-3xl text-[0.8rem] lg:text-3xl place-self-start capitalize'>{producto.nombre}</p>
+        <p className='line-clamp-2   sm:text-3xl text-[0.8rem] lg:text-3xl place-self-start capitalize'>{producto.nombre}</p>
         <p className=' line-through text-start text-gray-500'> {producto.descuento > 0 ? "$" + producto.precio.toLocaleString('es-ES') : ""}</p>
         <h4 className=' lg:text-3xl text-[1rem] sm:text-2xl place-self-start'>${producto.descuento > 0 ?  (producto.precio - (producto.descuento * producto.precio / 100)).toLocaleString('es-ES'): producto.precio.toLocaleString('es-ES')}</h4>
         <h2 className='lg:text-2xl text-[0.8rem] sm:text-[1rem] text-green-500 place-self-start'>{producto.envio == "internacional" ? <span className='flex gap-2 scale-100    text-red-800'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="rotate-50 place-self-center" viewBox="0 0 16 16">
