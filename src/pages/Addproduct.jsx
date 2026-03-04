@@ -61,6 +61,7 @@ const {user, loading}= useLoginCheck()
       const {data: urlData} = supabase.storage
       .from("imagenes").getPublicUrl(fileName)
       const publicUrl= urlData.publicUrl
+      console.log(urlData)
     if (uploadError) throw uploadError;
     if (loading != true) {
      const {data,error}= await supabase
@@ -78,13 +79,13 @@ const {user, loading}= useLoginCheck()
       usuario_foto: user.user_metadata.picture
                 }
             ])
-    
-redireccion() 
-    }
-    
     if (error) {
       console.log(error)
     }
+redireccion() 
+    }
+    
+    
     }
   return (
 

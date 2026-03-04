@@ -27,15 +27,15 @@ const syncUser = async () => {
         id_usuario: user.id,
         correo: user.email,
         nombre: user.user_metadata.name,
-        Cartshopping: "[]",
-        categoriasfavoritas: "[]",
+        Cartshopping: [],
+        categoriasfavoritas: [],
       })
     }
   
     }
   const handleCategories= async () =>{
   const {data,error} = await supabase.from("usuarios").select("*").eq("id_usuario", user.id).single()
-  setCategorias(JSON.parse(data.categoriasfavoritas))
+  setCategorias(data.categoriasfavoritas)
 
   if (error) {
     console.log(error)

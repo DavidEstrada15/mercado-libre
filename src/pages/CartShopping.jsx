@@ -122,7 +122,6 @@ const handleCart = async () =>{
   
 const {data, error} = await supabase.from("usuarios").select("*").eq("id_usuario", user.id).single()
 
-
 setProductos(JSON.parse(data.Cartshopping))
 
 if (error) {
