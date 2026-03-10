@@ -34,22 +34,23 @@ let {user, loading}= useLoginCheck()
   const handleCharge = async () =>{
     if (user !=null) {
       const {data, error} = await supabase.from("usuarios").select("*").eq("id_usuario", user.id).single()
-    setProductoscart(JSON.parse(data.Cartshopping))
+    setProductoscart(data.Cartshopping)
+    console.log(data)
     if (error) {
       console.log(error)
     }
 if (data.categoriasfavoritas.includes(producto.categoria) != true) {
-  if (JSON.parse(data.categoriasfavoritas).length < 4) {
-    let categorianueva= [...JSON.parse(data.categoriasfavoritas),producto.categoria]
+  if (data.categoriasfavoritas.length < 4) {
+    let categorianueva= [...data.categoriasfavoritas,producto.categoria]
     await supabase.from("usuarios").update({
-        categoriasfavoritas: JSON.stringify(categorianueva)
+        categoriasfavoritas: categorianueva
       }).eq("id_usuario", user.id)
   }else{
-    let categoriasfiltradas=  JSON.parse(data.categoriasfavoritas)
+    let categoriasfiltradas=  data.categoriasfavoritas
      categoriasfiltradas.shift()
       let categorianueva= [...categoriasfiltradas,producto.categoria]
     await supabase.from("usuarios").update({
-        categoriasfavoritas: JSON.stringify(categorianueva)
+        categoriasfavoritas: categorianueva
       }).eq("id_usuario", user.id)
   }
     }
@@ -79,7 +80,10 @@ navigate('/Signin', {replace:true})
         <h4 className=' lg:text-3xl place-self-start text-3xl'>${producto.descuento > 0 ?  (producto.precio - (producto.descuento * producto.precio / 100)).toLocaleString('es-ES'): producto.precio.toLocaleString('es-ES')}</h4>
        
       <p className='text-2xl'>{producto.stock} unidades disponibles</p>
-      <button onClick={user != null ? handleSubmitproduct : handleredirect}  className='bg-blue-500 px-5 py-5 text-white rounded-2xl cursor-pointer'>Agregar al carrito</button>
+      <button onClick={user != null ? handleSubmitproduct : handleredirect}  className='bg-blue-500 place-self-center sm:px-52 sm:py-5 px-25 py-2 flex gap-5 text-white rounded-2xl cursor-pointer'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="place-self-center scale-200" viewBox="0 0 16 16">
+  <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
+  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+</svg>Agregar al carrito</button>
       <div className='flex flex-col'>
         <h2>Producto subido por:</h2>
         <div className='flex gap-5 place-items-center'><img className='w-20 rounded-4xl' src={producto.usuario_foto} referrerPolicy='no policy' alt="" />
@@ -101,7 +105,10 @@ navigate('/Signin', {replace:true})
       <h2 className='text-2xl text-green-500 place-self-start'>{producto.envio == "internacional" ? <span className='flex gap-2 text-red-800'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="rotate-50 place-self-center" viewBox="0 0 16 16">
   <path d="M8 0c-.787 0-1.292.592-1.572 1.151A4.35 4.35 0 0 0 6 3v3.691l-2 1V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.191l-1.17.585A1.5 1.5 0 0 0 0 10.618V12a.5.5 0 0 0 .582.493l1.631-.272.313.937a.5.5 0 0 0 .948 0l.405-1.214 2.21-.369.375 2.253-1.318 1.318A.5.5 0 0 0 5.5 16h5a.5.5 0 0 0 .354-.854l-1.318-1.318.375-2.253 2.21.369.405 1.214a.5.5 0 0 0 .948 0l.313-.937 1.63.272A.5.5 0 0 0 16 12v-1.382a1.5 1.5 0 0 0-.83-1.342L14 8.691V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v.191l-2-1V3c0-.568-.14-1.271-.428-1.849C9.292.591 8.787 0 8 0"/>
 </svg>internacional</span> : "Envio Gratis"}</h2>
-      <button onClick={user != null ? handleSubmitproduct : handleredirect} className='bg-blue-500 px-5 py-5 text-white rounded-2xl cursor-pointer'>Agregar al carrito</button>
+      <button onClick={user != null ? handleSubmitproduct : handleredirect} className='bg-blue-500  flex gap-5 place-self-center px-25 py-5 text-white rounded-2xl cursor-pointer'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="place-self-center scale-150" viewBox="0 0 16 16">
+  <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
+  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+</svg>Agregar al carrito</button>
       <div className='flex flex-col'>
         <h2>Producto subido por:</h2>
         <div className='flex gap-5 place-items-center'><img className='w-20 rounded-4xl' src={producto.usuario_foto} referrerPolicy='no policy' alt="" />

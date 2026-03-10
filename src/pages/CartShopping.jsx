@@ -112,10 +112,10 @@ await supabase.from("usuarios").update({Cartshopping: JSON.stringify([])}).eq("i
   
 }
  
-  const calcularprecio =  
+  const calcularprecio =  Math.round(
 productos.reduce((acumulador, producto) =>
  acumulador + (producto.precio - (producto.descuento * producto.precio / 100)),0
-
+)
 )
 
 const handleCart = async () =>{

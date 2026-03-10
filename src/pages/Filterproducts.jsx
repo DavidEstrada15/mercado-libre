@@ -4,19 +4,26 @@ import { useLocation, Link } from 'react-router-dom'
 import { supabase } from '../supaBaseclient'
 import { useState, useEffect } from 'react'
 import Footer from '../components/Footer'
+import useLoginCheck from '../components/Logincheck.jsx'
 function Filterproducts() {
     const locacion= useLocation().state
+
+    const {user, loading} = useLoginCheck()
  const categoria= locacion
  let [productos, setProductos] = useState([])
      useEffect(() =>{
-      setProductos([])
-         handleProducts()
-     }, [categoria])
+     
+      if (loading != true) {
+         setProductos([])
+        handleProducts()
+      }
+         
+     }, [categoria, user])
  
      const handleProducts =  async () => {
        const {data, error} = await supabase
              .from("productos")
-             .select("*").like('categoria',`%${categoria}%`)
+             .select("*").neq("usuario_foto", user.user_metadata.picture).like('categoria',`%${categoria}%`)
              if (error) {
                console.log(error)
              }else{
@@ -35,7 +42,7 @@ function Filterproducts() {
    
    productos.map(producto => (<Link key={producto.id} state={{producto}} to="/Productsingle">
          <article key={producto.id} className='  lg:flex lg:flex-col sm:gap-20 lg:gap-5 lg:px-0 lg:py-0   py-2 flex gap-2'>
-           <div className='w-52 shrink-0  lg:w-[20vw] object-cover h-50 place-items-center ' > 
+           <div className='w-32 shrink-0 sm:w-52  lg:w-[20vw] object-cover h-50 place-items-center ' > 
              <img className='w-full h-full ' src={producto.imagenes} alt={producto.imagenes} /></div>
           
            <div className=' flex flex-col gap-5 max-w-48 text-center'>

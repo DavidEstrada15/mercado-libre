@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 function Searchpage() {
-  
+ 
   const location= useLocation()
  const searchvalue= location.state
  let [productos, setProductos] = useState([])
@@ -39,7 +39,7 @@ function Searchpage() {
         productos.map(producto => (
         <Link key={producto.id} state={{producto}} to="/Productsingle">
               <article key={producto.id} className='  lg:flex lg:flex-col sm:gap-20 lg:gap-5 lg:px-0 lg:py-0   py-2 flex gap-2'>
-                <div className='w-52 shrink-0  lg:w-[20vw] object-cover h-50 place-items-center ' > 
+                <div className='w-32 shrink-0 sm:w-52 lg:w-[20vw] object-cover h-50 place-items-center ' > 
                   <img className='w-full h-full ' src={producto.imagenes} alt={producto.imagenes} /></div>
                
                 <div className=' flex flex-col gap-5 max-w-48 text-center'>

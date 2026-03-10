@@ -2,20 +2,24 @@ import React from 'react'
 import  { useEffect, useState } from 'react'
 import { supabase } from '../supaBaseclient'
 import { Link } from 'react-router-dom'
+import useLoginCheck from '../components/Logincheck.jsx'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 function Offerts() {
 
-
+let {user, loading} = useLoginCheck()
     let [productos, setProductos] = useState([])
     useEffect(() =>{
-        handleProducts()
-    })
+      if (loading != true) {
+         handleProducts()
+      }
+       
+    }, [user])
     const handleProducts =  async () => {
       const {data, error} = await supabase
             .from("productos")
             .select("*")
-            .gt('descuento', 0)
+            .gt('descuento', 0).neq("usuario_foto", user.user_metadata.picture)
             if (error) {
               console.log(error)
             }else{

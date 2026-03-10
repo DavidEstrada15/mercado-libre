@@ -18,7 +18,7 @@ useEffect(()=>{
   setVariablecambia(cambia)
   handleChange()
  }
-})
+}, [window.innerWidth < 1024 ? cambia : ""])
  
 
   let handleChangeuser = () => {
@@ -62,7 +62,7 @@ const navigate= useNavigate()
   let imagen= user?.user_metadata?.picture
   if (open && screen.width < 1024){
 return (<>
-<header className='flex bg-yellow-300  justify-around place-items-center gap-3'>
+<header className='flex bg-yellow-100  justify-around place-items-center gap-3'>
   <Link to='/'>
       <img className='rounded-3xl w-15' src={mercadolibrelogofondo} alt="" /></Link>
       <form onSubmit={handleSearch} className='flex'>
@@ -174,14 +174,14 @@ return (<>
   <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
   <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
 </svg>
-<h2>¡Compra y vende con la App!</h2>
+<a href="https://play.google.com/store/apps/details?id=com.mercadolibre&hl=es_CO"></a><h2>¡Compra y vende con la App!</h2>
 </article>
     </section>
   </section></>)
     }else{
         return (
     <>
-    <header className='flex flex-col bg-yellow-300  justify-around place-items-center gap-3 '><div className='flex justify-around place-items-center gap-3 w-full'>
+    <header className='flex flex-col bg-yellow-200  justify-around place-items-center gap-3 '><div className='flex justify-around place-items-center gap-3 w-full'>
       <Link to="/"><div className='flex text-center text-2xl place-items-center   '>
       <img className='rounded-3xl w-15' src={mercadolibrelogofondo} alt="logo" />
       <h2 className='hidden lg:block text-blue-950 text-start font-bold'>mercado <br /> libre</h2></div></Link>
@@ -233,7 +233,7 @@ return (<>
       <div className='flex flex-col gap-10'>
       <div className='flex gap-5 mr-5 place-items-center'>
         <h2>{user != null && loading != true ?  <div onClick={handleChangeuser} className='flex place-items-center gap-2 cursor-pointer'><img src={imagen} referrerPolicy='no-referrer' className='w-10 rounded-2xl'  alt="Foto de usuario" /> <span>{user.user_metadata.name}</span></div>  : <Link to="/SignIn">Crea tu cuenta</Link> }</h2>
-       <Link to='/CartShopping' className='flex gap-5'> <h2>Mis compras</h2>
+       <Link to={user != null  ? '/CartShopping' : "/SignIn"} className='flex gap-5'> <h2>Mis compras</h2>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="scale-150" viewBox="0 0 16 16">
   <path d="M6.5 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1z"/>
   <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>

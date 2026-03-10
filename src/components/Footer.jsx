@@ -4,6 +4,7 @@ import payment from "../assets/payment.svg"
 import shipping from "../assets/shipping.svg"
 import { supabase } from '../supaBaseclient'
 import protectedsvg from "../assets/protected.svg"
+import useLoginCheck from './Logincheck'
 import { Link } from 'react-router-dom'
 function Footer() {
   let [imagenactual, setImagenactual] = useState(0)
@@ -11,9 +12,9 @@ function Footer() {
     let [hover, setHover] = useState(false)
   let [productos, setProductos] = useState([])
   let letras= []
-
+  let {user,loading}= useLoginCheck()
   let handleProducts = async () =>{
-let {data,error} = await supabase.from("productos").select("*").order('nombre', {ascending: true})
+let {data,error} = await supabase.from("productos").select("*").order('nombre', {ascending: true}).neq("usuario_foto", user.user_metadata.picture)
 setProductos(data)
 
 if (error) {
@@ -22,8 +23,11 @@ if (error) {
   }
 
   useEffect(()=>{
-    handleProducts()
-  }, [productos])
+    if (loading != true) {
+        handleProducts()
+    }
+  
+  }, [productos, user])
 
     let articulos= [
       {
@@ -130,7 +134,7 @@ for (let i = 97; i <= 122; i++) {
   <div className='flex flex-row gap-5 lg:p-5 flex-wrap'>
   {
 letras.map(letra =>(
-  <Link to={"/Searchpage"} key={letra} state={letra}><h2 className='flex text-3xl lg:text-2xl uppercase'>{letra}</h2> </Link>
+  <Link to={"/Searchpage"} key={letra} state={letra}><h2 className='flex sm:text-4xl lg:text-2xl uppercase'>{letra}</h2> </Link>
 ))
   }</div>
 </div>

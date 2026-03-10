@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { supabase } from '../supaBaseclient'
 import { Link } from 'react-router-dom'
+import useLoginCheck from './Logincheck'
 function Products({titulo, categoria, norepetir}) {
     let [productos, setProductos] = useState([])
-    useEffect(() =>{
-        handleProducts()
-    })
+ 
+
+    const {user, loading} = useLoginCheck()
     const handleProducts =  async () => {
       const {data, error} = await supabase
             .from("productos")
             .select("*")
-            .eq("categoria", categoria).limit(5)
+            .eq("categoria", categoria).neq("usuario_foto", user.user_metadata.picture).limit(5)
             if (error) {
               console.log(error)
             }else{
@@ -18,6 +19,12 @@ function Products({titulo, categoria, norepetir}) {
             }
           
     }
+       useEffect(() =>{
+      if (loading != true) {
+        handleProducts()
+      }
+        
+    }, [user])
      if (norepetir != undefined) { 
       let productosfiltrados= productos.filter(producto => producto.id != norepetir)
        return (
@@ -31,7 +38,7 @@ function Products({titulo, categoria, norepetir}) {
     producto.stock > 0 ?
         <Link key={producto.id} state={{producto}} to="/Productsingle">
       <article key={producto.id} className='  lg:flex lg:flex-col sm:gap-20 lg:gap-5 lg:px-0 lg:py-0   py-2 flex gap-2'>
-        <div className='w-52 shrink-0  lg:w-[20vw] object-cover h-50 place-items-center ' > 
+        <div className='w-32 shrink  lg:w-[20vw] object-cover h-50 place-items-center ' > 
           <img className='w-full h-full ' src={producto.imagenes} alt={producto.imagenes} /></div>
        
         <div className=' flex flex-col gap-5 max-w-48 text-center'>
@@ -57,7 +64,7 @@ function Products({titulo, categoria, norepetir}) {
       {
       productos.map(producto => (producto.stock > 0 ? <Link key={producto.id} state={{producto}} to="/Productsingle">
       <article key={producto.id} className='  lg:flex lg:flex-col sm:gap-20 lg:gap-5 lg:px-0 lg:py-0   py-2 flex gap-2'>
-        <div className='w-52 shrink-0  lg:w-[15vw] object-cover h-50 place-items-center ' > 
+        <div className='w-32 shrink-0 sm:w-52  lg:w-[15vw] object-cover h-50 place-items-center ' > 
           <img className='w-full h-full ' src={producto.imagenes} alt={producto.imagenes} /></div>
        
         <div className=' flex flex-col gap-5 max-w-48 text-center'>

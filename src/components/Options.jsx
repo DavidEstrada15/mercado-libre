@@ -17,12 +17,12 @@ function Options() {
     <section className='flex overflow-scroll lg:overflow-auto gap-5 max-w-full p-5  lg:place-content-center'>
       
       <article style={user != null && loading != true ? {display: "none"}: {display: "flex"}} className='bg-white lg:max-w-[20vw] lg:h-[45vh] px-10 py-1 lg:px-0 lg:py-0 rounded-2xl flex flex-col gap-2 text-center '>
-       <h2 className=' hidden lg:flex'>Ingresa a tu cuenta</h2>
+       <h2 className=' hidden lg:flex '>Ingresa a tu cuenta</h2>
        
         <div>
           <img className='w-20 lg:w-30 lg:h-30 place-self-center' src={registration} alt="Ingresa a tu cuenta" />
           <h2 className='lg:hidden text-blue-600 text-center'>INICIA A COMPRAR</h2>
-          <h2 className='text-[0.8rem] lg:text-2xl'>Disfruta de ofertas <br /> y compras sin limites</h2>
+          <h2 className='text-[0.8rem] lg:text-[1rem]'>Disfruta de ofertas <br /> y compras sin limites</h2>
         </div>
         
        <Link to={"/SignIn"}> <button className='bg-blue-200 text-blue-600 place-self-center cursor-pointer text-[0.9rem] px-2 rounded-[10%] py-2 '>Ingresa  a tu cuenta</button></Link> 
