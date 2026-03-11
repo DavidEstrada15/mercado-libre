@@ -88,9 +88,13 @@ navigate('/Signin', {replace:true})
       <div className='flex flex-col'>
         <h2>Producto subido por:</h2>
         <div className='flex gap-5 place-items-center'><img className='w-20 rounded-4xl' src={producto.usuario_foto} referrerPolicy='no-referrer' alt="" />
-      <h2>{producto.usuario_nombre}</h2></div>
+      <h2>{producto.usuario_nombre}</h2>
+      
       </div>
-    
+      </div>
+    <div className='flex gap-5'>
+      <h2>Fecha de creacion del producto:</h2>
+      <h2>{producto.created_at}</h2></div>
       <Products norepetir={producto.id} titulo='Productos relacionados' categoria={producto.categoria}></Products></div> 
       <div className='hidden lg:flex flex-col gap-5 p-5 bg-gray-100 place-items-center '>
    <div className='flex gap-5 '><Link to={"/"}><h2 className='text-2xl text-start text-blue-600'>Inicio</h2></Link> <h2 className='text-2xl text-start text-blue-600'>|</h2><Link state={producto.categoria} to="/Filterproducts"><h2 className='text-2xl text-start text-blue-600'>{producto.categoria}</h2></Link>  
@@ -115,6 +119,9 @@ navigate('/Signin', {replace:true})
         <div className='flex gap-5 place-items-center'><img className='w-20 rounded-4xl' src={producto.usuario_foto} referrerPolicy='no-referrer' alt="" />
       <h2>{producto.usuario_nombre}</h2></div>
       </div>
+      <div className='flex gap-5'>
+      <h2>Fecha de creacion del producto:</h2>
+      <h2>{producto.created_at}</h2></div>
         </div>
         
       </div>
