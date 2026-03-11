@@ -11,7 +11,7 @@ const {user,loading}= useLoginCheck()
 const handleErase= async (e) => {
   let productosfiltrados= productos.filter(productolocal => productolocal.idcompra != e.idcompra)
 setProductos(productos.filter(productolocal => productolocal.idcompra != e.idcompra  ))
- await supabase.from("usuarios").update({Cartshopping: JSON.stringify(productosfiltrados)}).eq("id_usuario", user.id)
+ await supabase.from("usuarios").update({Cartshopping: productosfiltrados}).eq("id_usuario", user.id)
  handleCart
 }
 
@@ -46,6 +46,12 @@ if (error){
   console.log(error)
 }
  productos.forEach(producto =>{
+   const productosEliminados = productos.filter(producto =>
+   data.some(productoDB => productoDB.id === producto.id)
+ )
+if (productosEliminados.length !== productos.length) {
+  setProductos(productosEliminados)
+}
   productosactualizados.forEach((productoactu) =>{
     if (producto.precio != productoactu.precio && producto.id == productoactu.id) {
     
@@ -107,7 +113,7 @@ const handleUpdate = async () => {
   }
 alert("Compra realizada correctamente!")
 setProductos([])
-await supabase.from("usuarios").update({Cartshopping: JSON.stringify([])}).eq("id_usuario", user.id)
+await supabase.from("usuarios").update({Cartshopping:[]}).eq("id_usuario", user.id)
   
   
 }
@@ -122,7 +128,7 @@ const handleCart = async () =>{
   
 const {data, error} = await supabase.from("usuarios").select("*").eq("id_usuario", user.id).single()
 
-setProductos(JSON.parse(data.Cartshopping))
+setProductos(data.Cartshopping)
 
 if (error) {
   console.log(error)

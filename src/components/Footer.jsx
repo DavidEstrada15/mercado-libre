@@ -14,7 +14,7 @@ function Footer() {
   let letras= []
   let {user,loading}= useLoginCheck()
   let handleProducts = async () =>{
-let {data,error} = await supabase.from("productos").select("*").order('nombre', {ascending: true}).neq("usuario_foto", user.user_metadata.picture)
+let {data,error} = await supabase.from("productos").select("*").order('nombre', {ascending: true}).neq("usuario_foto", user.user_metadata.picture).limit(50)
 setProductos(data)
 
 if (error) {

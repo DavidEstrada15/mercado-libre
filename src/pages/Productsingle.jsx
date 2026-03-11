@@ -22,8 +22,9 @@ let {user, loading}= useLoginCheck()
   const handleSubmitproduct=  async () =>{
 
   let productos= [...productoscart, producto]
+ 
       await supabase.from("usuarios").update({
-        Cartshopping: JSON.stringify(productos)
+        Cartshopping: productos
       }).eq("id_usuario", user.id)
       
       redireccion()
@@ -35,7 +36,7 @@ let {user, loading}= useLoginCheck()
     if (user !=null) {
       const {data, error} = await supabase.from("usuarios").select("*").eq("id_usuario", user.id).single()
     setProductoscart(data.Cartshopping)
-    console.log(data)
+ 
     if (error) {
       console.log(error)
     }
@@ -86,7 +87,7 @@ navigate('/Signin', {replace:true})
 </svg>Agregar al carrito</button>
       <div className='flex flex-col'>
         <h2>Producto subido por:</h2>
-        <div className='flex gap-5 place-items-center'><img className='w-20 rounded-4xl' src={producto.usuario_foto} referrerPolicy='no policy' alt="" />
+        <div className='flex gap-5 place-items-center'><img className='w-20 rounded-4xl' src={producto.usuario_foto} referrerPolicy='no-referrer' alt="" />
       <h2>{producto.usuario_nombre}</h2></div>
       </div>
     
@@ -111,7 +112,7 @@ navigate('/Signin', {replace:true})
 </svg>Agregar al carrito</button>
       <div className='flex flex-col'>
         <h2>Producto subido por:</h2>
-        <div className='flex gap-5 place-items-center'><img className='w-20 rounded-4xl' src={producto.usuario_foto} referrerPolicy='no policy' alt="" />
+        <div className='flex gap-5 place-items-center'><img className='w-20 rounded-4xl' src={producto.usuario_foto} referrerPolicy='no-referrer' alt="" />
       <h2>{producto.usuario_nombre}</h2></div>
       </div>
         </div>
