@@ -28,7 +28,7 @@ useEffect(()=>{
    let [productos, setProductos] = useState([])
        useEffect(() =>{
            handleProducts()
-       })
+       }, [])
    
        const handleProducts =  async () => {
          const {data, error} = await supabase

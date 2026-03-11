@@ -25,7 +25,7 @@ function Options() {
           <h2 className='text-[0.8rem] lg:text-[1rem]'>Disfruta de ofertas <br /> y compras sin limites</h2>
         </div>
         
-       <Link to={"/SignIn"}> <button className='bg-blue-200 text-blue-600 place-self-center cursor-pointer text-[0.9rem] px-2 rounded-[10%] py-2 '>Ingresa  a tu cuenta</button></Link> 
+       <Link to={"/SignIn"}> <button className='bg-blue-200 text-blue-600 place-self-center cursor-pointer text-[0.7rem] px-2 rounded-[10%] py-2 '>Ingresa  a tu cuenta</button></Link> 
       </article>
       <article className='bg-white  lg:max-w-[20vw] h-[45vh] rounded-2xl hidden lg:flex flex-col gap-2 text-center '>
         <h2>Medios de pago</h2>

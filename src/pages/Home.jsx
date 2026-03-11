@@ -11,7 +11,6 @@ import useLoginCheck from '../components/Logincheck.jsx'
 function Home() {
   let [categorias, setCategorias]= useState([])
   const {loading, user}= useLoginCheck()
-
 const syncUser = async () => {
        const { data: { session } } = await supabase.auth.getSession()
     if (!session) return
@@ -28,7 +27,7 @@ const syncUser = async () => {
         correo: user.email,
         nombre: user.user_metadata.name,
         Cartshopping: [],
-        categoriasfavoritas: [],
+        categoriasfavoritas: ['videojuegos', 'moda'],
       })
     }
   
@@ -42,15 +41,15 @@ const syncUser = async () => {
   }
 }
   useEffect(() =>{
-    if (loading != true && user != null) {
+    if ( loading != true && user != null) {
       syncUser()
      handleCategories() 
+     
     }else{
       setCategorias(['videojuegos', 'moda'])
     }
     
   }, [loading])
-
 
   return (
     <>

@@ -9,12 +9,20 @@ function Offerts() {
 
 let {user, loading} = useLoginCheck()
     let [productos, setProductos] = useState([])
-    useEffect(() =>{
-      if (loading != true) {
-         handleProducts()
-      }
-       
-    }, [user])
+    const handleProductsUnsession = async () =>{
+          const {data,error}= await supabase.from("productos").select("*").gt('descuento', 0)
+          setProductos(data)
+        }
+           useEffect(() =>{
+            if (loading) return 
+          if (user != null) {
+            handleProducts()
+          }else{
+            handleProductsUnsession()
+     
+          }
+            
+        }, [user, loading])
     const handleProducts =  async () => {
       const {data, error} = await supabase
             .from("productos")
@@ -39,7 +47,7 @@ let {user, loading} = useLoginCheck()
         <p className='text-2xl hidden lg:block'>{productos.length} resultados</p>
         
         </div>
-        <section className=' grid grid-cols-1 lg:grid-cols-4 lg:gap-10 gap-5 lg:w-[90%] lg:place-self-center w-screen   lg:px-5 lg:py-10 py-5 bg-white  '>
+        <section className=' grid grid-cols-1 lg:grid-cols-4 lg:gap-10 gap-5 lg:w-[90%] lg:place-self-center w-screen lg:mb-10   lg:px-5 lg:py-10 py-5 bg-white  '>
           {
             productos.map(producto => (
               <Link key={producto.id} state={{producto}} to="/Productsingle">

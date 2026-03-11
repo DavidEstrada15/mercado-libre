@@ -11,15 +11,7 @@ function Filterproducts() {
     const {user, loading} = useLoginCheck()
  const categoria= locacion
  let [productos, setProductos] = useState([])
-     useEffect(() =>{
-     
-      if (loading != true) {
-         setProductos([])
-        handleProducts()
-      }
-         
-     }, [categoria, user])
- 
+
      const handleProducts =  async () => {
        const {data, error} = await supabase
              .from("productos")
@@ -31,6 +23,25 @@ function Filterproducts() {
              }
            
      }
+   const handleProductsUnsession = async () =>{
+         const {data,error}= await supabase.from("productos").select("*").eq("categoria", categoria)
+         setProductos(data)
+       }
+          useEffect(() =>{
+            if (loading != true) {
+                 
+         if ( user != null) {
+ 
+           handleProducts()
+         }else{
+           handleProductsUnsession()
+    
+         }
+            }
+         
+           
+       }, [categoria, user, loading])
+ 
      
   return (
     

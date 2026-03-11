@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import useLoginCheck from './Logincheck'
 function Products({titulo, categoria, norepetir}) {
     let [productos, setProductos] = useState([])
- 
 
     const {user, loading} = useLoginCheck()
     const handleProducts =  async () => {
@@ -19,16 +18,25 @@ function Products({titulo, categoria, norepetir}) {
             }
           
     }
+
+    const handleProductsUnsession = async () =>{
+      const {data,error}= await supabase.from("productos").select("*").eq("categoria", categoria)
+      setProductos(data)
+    }
        useEffect(() =>{
-      if (loading != true) {
+        if (loading) return
+      if (user != null) {
         handleProducts()
+      }else{
+        handleProductsUnsession()
+ 
       }
         
-    }, [user])
+    }, [user, loading])
      if (norepetir != undefined) { 
       let productosfiltrados= productos.filter(producto => producto.id != norepetir)
        return (
-    <section className='  flex flex-col lg:gap-10 lg:w-[90%] lg:place-self-center gap-5   w-screen overflow-x-scroll  lg:py-10 py-5 bg-white  '>
+    <section className='  flex flex-col lg:gap-10 lg:w-[90vw] lg:place-self-center gap-5   w-screen overflow-x-scroll  lg:py-10 py-5 bg-white  '>
       <h2 className='text-2xl'>{titulo}</h2><div className='flex flex-col gap-10  lg:flex-row lg:gap-20 w-full text-center '>
         
       {
